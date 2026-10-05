@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#03160f">
+  <meta name="description" content="Nigeria at 66 — an immersive Independence Day story.">
+  <title>Nigeria at 66 — Still Becoming</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css">
+  <link rel="stylesheet" href="./effects.css">
+</head>
+<body>
+  <div class="film-grain" aria-hidden="true"></div>
+  <div class="cinema-vignette" aria-hidden="true"></div>
+  <div class="light-leak" aria-hidden="true"></div>
+  <div class="cursor-orb" id="cursorOrb" aria-hidden="true"></div>
+
+  <div class="loader" id="loader" aria-label="Loading the Nigeria Independence story">
+    <div class="loader__top"><span>Federal Republic of Nigeria</span><span>01 · 10 · 2026</span></div>
+    <div class="loader__core">
+      <div class="loader__flag" aria-hidden="true"><i></i><i></i><i></i></div>
+      <p class="eyebrow">A nation in motion</p>
+      <div class="loader__number"><span id="loaderCount">00</span><small>%</small></div>
+      <p class="loader__status" id="loaderStatus">Gathering memory</p>
+    </div>
+    <div class="loader__line"><i id="loaderLine"></i></div>
+  </div>
+
+  <header class="nav" id="nav">
+    <a class="brand" href="#home" aria-label="Nigeria at 66 home"><span class="brand__mark">N</span><span>Nigeria<br>at 66</span></a>
+    <div class="nav__right">
+      <button class="text-button" id="filmBtn" type="button"><span class="pulse"></span> Play film</button>
+      <button class="sound" id="soundBtn" type="button" aria-pressed="false" aria-label="Turn soundtrack on">
+        <span class="sound__bars" aria-hidden="true"><i></i><i></i><i></i></span><span class="sound__label">Sound off</span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero chapter" id="home">
+      <div class="hero__image parallax" data-speed="0.12"></div>
+      <div class="hero__shutters" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="hero__veil"></div>
+      <div class="hero__copy reveal">
+        <p class="eyebrow">October 1 · Independence Day</p>
+        <h1>Still<br><em>becoming.</em></h1>
+        <div class="hero__foot">
+          <p>66 years of carrying a bold idea forward:<br>that many peoples can become one nation.</p>
+          <a href="#prologue" class="round-link" aria-label="Begin the story"><span>Begin</span><b>↓</b></a>
+        </div>
+      </div>
+      <p class="scroll-cue" aria-hidden="true">Scroll to remember <i></i></p>
+    </section>
+
+    <section class="prologue chapter" id="prologue">
+      <div class="ink-stroke ink-stroke--one" aria-hidden="true"></div>
+      <div class="ink-stroke ink-stroke--two" aria-hidden="true"></div>
+      <div class="archive-collage" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="prologue__number" aria-hidden="true">1914</div>
+      <div class="prologue__grid reveal">
+        <p class="eyebrow">Before the nation</p>
+        <h2>Before one name,<br><em>there were many worlds.</em></h2>
+        <div class="body-copy">
+          <p>Kingdoms, city-states and communities had long built systems of art, trade, knowledge and governance across the land.</p>
+          <p>In 1914, the Northern and Southern protectorates were amalgamated. A political boundary was drawn; the deeper work of nationhood had only begun.</p>
+        </div>
+      </div>
+      <div class="coordinates" aria-hidden="true">9.0820° N&nbsp;&nbsp;&nbsp;8.6753° E</div>
+    </section>
+
+    <section class="dawn chapter" id="dawn">
+      <div class="dawn__image parallax" data-speed="0.08"></div>
+      <div class="dawn__brush" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <div class="dawn__figure" aria-hidden="true"></div>
+      <div class="dawn__overlay"></div>
+      <div class="dawn__date" aria-hidden="true">1960</div>
+      <div class="dawn__copy reveal">
+        <p class="eyebrow">The night gave way</p>
+        <blockquote>“Today, we inherit<br>not an ending —<br><em class="image-type">but a beginning.”</em></blockquote>
+        <div class="dawn__fact"><span>01 October</span><p>Nigeria becomes independent, and its green-white-green flag is raised for a sovereign nation.</p></div>
+      </div>
+    </section>
+
+    <section class="republic chapter" id="republic">
+      <div class="republic__wash" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="republic__word" aria-hidden="true">REPUBLIC</div>
+      <div class="republic__content reveal">
+        <p class="eyebrow">Freedom found its name</p>
+        <div class="republic__split">
+          <h2 class="heritage-type">1963</h2>
+          <div><h3>A nation,<br>in its own name.</h3><p>Three years after independence, Nigeria became a republic. The promise remained immense: to turn freedom into belonging, dignity and possibility.</p></div>
+        </div>
+      </div>
+      <div class="tricolor" aria-hidden="true"><i></i><i></i><i></i></div>
+    </section>
+
+    <section class="democracy chapter" id="democracy">
+      <div class="democracy__image parallax" data-speed="0.06"></div>
+      <div class="democracy__tear" aria-hidden="true"></div>
+      <div class="democracy__shade"></div>
+      <div class="democracy__copy reveal">
+        <p class="eyebrow">The voice returned</p>
+        <h2>A voice,<br><em>renewed.</em></h2>
+        <div class="year-card"><strong>1999</strong><p>Nigeria returned to democratic rule — another chapter in the ongoing work of choosing, questioning and shaping our shared future.</p></div>
+      </div>
+    </section>
+
+    <section class="now chapter" id="now">
+      <div class="now__image parallax" data-speed="0.05"></div>
+      <div class="now__slices" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="now__shade"></div>
+      <div class="now__copy reveal">
+        <p class="eyebrow">A future in motion</p>
+        <h2>Our greatest story<br>is the one <em class="image-type image-type--now">ahead.</em></h2>
+        <p class="now__lead">From the rhythm that moves the world to ideas reshaping its future, Nigeria is not simply a place on the map. It is energy. It is imagination. It is us.</p>
+        <div class="pillars" aria-label="Nigeria today">
+          <span>Culture</span><span>Enterprise</span><span>Ingenuity</span><span>Community</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="finale chapter" id="finale">
+      <div class="finale__flag" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="finale__portrait" aria-hidden="true"></div>
+      <div class="finale__brushes" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+      <div class="finale__year" aria-hidden="true">66</div>
+      <div class="finale__copy reveal">
+        <p class="eyebrow">One nation · Many stories · One future</p>
+        <p class="finale__small">Happy</p>
+        <h2><span>Independence</span><br><em class="finale__image-word">Nigeria.</em></h2>
+        <p class="finale__message">May the labour of our heroes past continue to call us toward a country worthy of every Nigerian dream.</p>
+        <div class="finale__meta"><span>01 · 10 · 2026</span><i></i><span>66 years forward</span></div>
+      </div>
+      <footer><span>Made with belief in Nigeria</span><span>01 · 10 · 2026</span></footer>
+    </section>
+  </main>
+
+  <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
+  <button class="skip-film" id="skipFilm" type="button">Exit film</button>
+  <audio id="anthem" preload="auto" loop>
+    <source src="./assets/national-anthem.m4a" type="audio/mp4">
+  </audio>
+  <script src="./script.js"></script>
+</body>
+</html>
