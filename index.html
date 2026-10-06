@@ -6,9 +6,12 @@
   <meta name="theme-color" content="#03160f">
   <meta name="description" content="Nigeria at 66 — an immersive Independence Day story.">
   <title>Nigeria at 66 — Still Becoming</title>
+  <link rel="preload" as="image" href="./assets/woven-nation.webp" media="(min-width:801px)" fetchpriority="high">
+  <link rel="preload" as="image" href="./assets/woven-nation-960.webp" media="(max-width:800px)" fetchpriority="high">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap" media="print" onload="this.media='all'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Manrope:wght@400;500;600;700&family=UnifrakturMaguntia&display=swap"></noscript>
   <link rel="stylesheet" href="./styles.css">
   <link rel="stylesheet" href="./effects.css">
 </head>
@@ -62,7 +65,7 @@
       <div class="prologue__number" aria-hidden="true">1914</div>
       <div class="prologue__grid reveal">
         <p class="eyebrow">Before the nation</p>
-        <h2>Before one name,<br><em>there were many worlds.</em></h2>
+        <h2 class="shadow-t" style="text-shadow: -1px 2px 0px rgba(0, 0, 0, 0.5);">Before one name,<br><em>there were many worlds.</em></h2>
         <div class="body-copy">
           <p>Kingdoms, city-states and communities had long built systems of art, trade, knowledge and governance across the land.</p>
           <p>In 1914, the Northern and Southern protectorates were amalgamated. A political boundary was drawn; the deeper work of nationhood had only begun.</p>
@@ -72,6 +75,7 @@
     </section>
 
     <section class="dawn chapter" id="dawn">
+      <div class="dawn__ghost parallax" data-speed="0.08" aria-hidden="true"></div>
       <div class="dawn__image parallax" data-speed="0.08"></div>
       <div class="dawn__brush" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
       <div class="dawn__figure" aria-hidden="true"></div>
@@ -140,9 +144,9 @@
 
   <div class="progress" aria-hidden="true"><i id="progressBar"></i></div>
   <button class="skip-film" id="skipFilm" type="button">Exit film</button>
-  <audio id="anthem" preload="auto" loop>
+  <audio id="anthem" preload="none" loop>
     <source src="./assets/national-anthem.m4a" type="audio/mp4">
   </audio>
-  <script src="./script.js"></script>
+  <script src="./script.js" defer></script>
 </body>
 </html>

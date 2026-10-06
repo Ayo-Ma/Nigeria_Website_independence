@@ -7,10 +7,27 @@ const lightLeak = document.querySelector('.light-leak');
 const anthem = document.getElementById('anthem');
 
 body.classList.add('loading');
+// The loader holds just short of 100 until the hero image is decoded, so the gate never opens on a blank frame.
+let heroReady = false;
+const heroImage = new Image();
+heroImage.src = matchMedia('(max-width:800px)').matches ? './assets/woven-nation-960.webp' : './assets/woven-nation.webp';
+heroImage.decode().catch(() => {}).then(() => { heroReady = true; });
+setTimeout(() => { heroReady = true; }, 6000);
+// Warm the later scenes' images once the hero is decoded, so they are fetched and decoded before the visitor scrolls to them.
+const smallScreen = matchMedia('(max-width:800px)').matches;
+heroImage.decode().catch(() => {}).then(() => {
+  ['independence-dawn', 'nigeria-now', 'many-voices-collage', 'future-portrait'].forEach((name, i) => {
+    setTimeout(() => {
+      const img = new Image();
+      img.src = `./assets/${name}${smallScreen ? '-960' : ''}.webp`;
+      img.decode().catch(() => {});
+    }, i * 400);
+  });
+});
 let loadValue = 0;
 const statuses = ['Gathering memory', 'Raising the colours', 'Carrying the dream', 'Ready'];
 const loadTimer = setInterval(() => {
-  loadValue = Math.min(100, loadValue + Math.ceil(Math.random() * 4));
+  loadValue = Math.min(heroReady ? 100 : 96, loadValue + Math.ceil(Math.random() * 9));
   count.textContent = String(loadValue).padStart(2, '0');
   line.style.width = `${loadValue}%`;
   status.textContent = statuses[Math.min(3, Math.floor(loadValue / 28))];
@@ -23,7 +40,7 @@ const loadTimer = setInterval(() => {
       hero.classList.add('is-active');
       hero.querySelector('.reveal').classList.add('visible');
       lightLeak.classList.add('flash');
-    }, 500);
+    }, 250);
   }
 }, 48);
 
@@ -35,11 +52,15 @@ const revealObserver = new IntersectionObserver((entries) => {
     entry.target.querySelectorAll('.reveal').forEach((el) => el.classList.add('visible'));
     lightLeak.classList.remove('flash');
     requestAnimationFrame(() => lightLeak.classList.add('flash'));
+    revealObserver.unobserve(entry.target);
   });
-}, { threshold: 0.32 });
-sections.forEach((section) => revealObserver.observe(section));
+// Fire as soon as a scene's top edge is 12% into the viewport, so it never scrolls in as a blank panel.
+}, { rootMargin: '0px 0px -12% 0px', threshold: 0 });
+// The hero is activated by the loader, so its shutters play as the gate opens rather than behind it.
+sections.filter((section) => !section.classList.contains('hero')).forEach((section) => revealObserver.observe(section));
 
 const progressBar = document.getElementById('progressBar');
+const parallaxLayers = [...document.querySelectorAll('.parallax')].map((el) => ({ el, speed: Number(el.dataset.speed || 0.06) }));
 let scrollTicking = false;
 function updateScrollEffects() {
   if (scrollTicking) return;
@@ -47,9 +68,9 @@ function updateScrollEffects() {
   requestAnimationFrame(() => {
     const maxScroll = document.documentElement.scrollHeight - innerHeight;
     progressBar.style.width = `${Math.max(0, Math.min(100, scrollY / maxScroll * 100))}%`;
-    document.querySelectorAll('.parallax').forEach((el) => {
+    parallaxLayers.forEach(({ el, speed }) => {
       const rect = el.parentElement.getBoundingClientRect();
-      const speed = Number(el.dataset.speed || 0.06);
+      if (rect.bottom < -innerHeight || rect.top > innerHeight * 2) return;
       el.style.transform = `translate3d(0, ${-rect.top * speed}px, 0) scale(1.06)`;
     });
     scrollTicking = false;
@@ -136,18 +157,27 @@ let cursorX = innerWidth / 2;
 let cursorY = innerHeight / 2;
 let orbX = cursorX;
 let orbY = cursorY;
+let cursorMoving = false;
 addEventListener('pointermove', (event) => {
   cursorX = event.clientX;
   cursorY = event.clientY;
+  if (!cursorMoving) {
+    cursorMoving = true;
+    requestAnimationFrame(animateCursor);
+  }
 }, { passive: true });
 function animateCursor() {
   orbX += (cursorX - orbX) * 0.16;
   orbY += (cursorY - orbY) * 0.16;
-  cursorOrb.style.left = `${orbX}px`;
-  cursorOrb.style.top = `${orbY}px`;
+  cursorOrb.style.transform = `translate3d(${orbX}px, ${orbY}px, 0)`;
+  // Stop the loop once the orb has caught up; the next pointermove restarts it.
+  if (Math.abs(cursorX - orbX) < 0.1 && Math.abs(cursorY - orbY) < 0.1) {
+    cursorMoving = false;
+    return;
+  }
   requestAnimationFrame(animateCursor);
 }
-animateCursor();
+cursorOrb.style.transform = `translate3d(${orbX}px, ${orbY}px, 0)`;
 document.querySelectorAll('a, button').forEach((element) => {
   element.addEventListener('pointerenter', () => cursorOrb.classList.add('is-large'));
   element.addEventListener('pointerleave', () => cursorOrb.classList.remove('is-large'));
